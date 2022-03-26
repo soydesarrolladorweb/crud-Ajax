@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD API REST AJAX</title>
+    <style>
+        html{
+            width: 100%;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        *,
+        *:before,
+        *:after{
+            box-sizing: border-box;
+        }
+ 
+        body{
+           margin: 0;
+           padding: 0;
+           background: linear-gradient(#7209b7, #3f37c0);
+           
+        }
+        h1{
+            font-size: 30px;
+            margin: 10px 0 30px;
+            padding: 0;
+            color: #46bb83;
+            text-align: center;
+        }
+ 
+        .container{
+            margin: 30px auto;
+            /* height: 320px; */
+            height: 30%;
+            width: 80%;
+            padding: 30px;
+            background: rgba(0, 0, 0, .5);
+            border-radius: 8px;
+        }
+ 
+        .container h2, .container__table h2{
+            margin: 0 0 30px;
+            padding: 0;
+            font-size: 26px;
+            color: #4ccf90;
+            text-align: center;
+        }
+ 
+         .container .element input{
+            width: 100%;
+            padding: 10px 0;
+            color: #fff;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #fff;
+            margin-bottom: 30px;
+        }
+ 
+        .container .element input[type="submit"]{
+            background-color:rgba(39, 58, 121, 0.774);
+            border: none;
+            letter-spacing: 4px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+ 
+        .container .element input[type="reset"]{
+            background-color:rgba(182, 41, 41, 0.699);
+            border: none;
+            letter-spacing: 4px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+ 
+        .container__table-total{
+            width: 90%;
+            min-width: 230px;
+            max-width: 300px;
+            height: 250px;
+            margin: auto;
+            display: grid;
+            justify-content: center;
+        }
+ 
+        .container__table-total table{
+            width: 80%;
+            height: 100%;
+            margin: auto;
+            border-spacing: 2px;
+        }
+        .crud-table th{
+            color: #46bb83;
+            margin: auto;
+            padding: 0;
+            width: 100%;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding-top: 1rem;
+        }
+ 
+         
+ 
+        template{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+        }
+ 
+     
+        .name,.phone{
+            color: beige;
+            font-size: 14px;
+            font-weight: 400;
+        }
+ 
+        .delete{
+            background-color: rgba(182, 41, 41, 0.699);
+            color: beige;
+            font-weight: 700;
+            border-radius: 8px;
+            width: 4.2rem;
+            height: 2rem;
+            margin: 0.5rem;
+            cursor: pointer;
+        }
+        .edit{
+            background-color: rgba(39, 58, 121, 0.774);
+            color: beige;
+            font-weight: 700;
+            border-radius: 8px;
+            width: 3.8rem;
+            height: 2rem;
+            padding-bottom: 5px;
+            cursor: pointer;
+        }
+ 
+        .template__buttons{
+            display: flex;
+            justify-content: center;
+            vertical-align: baseline;
+        }
+ 
+        .template__buttons a{
+            padding-top: 10px;
+        }
+ 
+        @media screen and (min-width: 644px) {
+ 
+             .container{
+                 width: 50%;
+             }
+ 
+             .container__table{
+                 display: grid;
+                 justify-content: center;
+                 width: 100%;
+                 margin: 0 auto;
+             }
+             .container h2, .container__table h2{
+                 font-size: 32px;
+             }
+             .crud-table th{
+                 font-size: 1.5rem;
+                 padding: 20px;
+             }
+             .name{
+                 width: 100%;
+                 display: inline-block;
+             }
+ 
+             .container .element input[type="submit"], input[type="reset"]{
+                 font-size: 18px;
+                 letter-spacing: 8px;
+             }
+ 
+             table, th, td, template{
+                 width: 100%;
+                 padding: 20px;
+             }
+ 
+             .template__buttons a{
+                 padding-top: 8px;
+            }
+ 
+            .edit, .delete{
+                width: 5rem;
+            }
+                   
+        }
+ 
+        @media screen and (min-width: 998px) {
+         .container .element input{
+             font-size: 18px;
+         }
+ 
+         .name, .phone{
+             width: 100%;
+             font-size: 16px;
+        }
+ 
+     }
+ 
+    </style>
+</head>
+<body>
+    <h1>CRUD API REST AJAX</h1>
+    <section id="section1" class="crud">
+        <article class="container">
+            <h2 class="crud-title">Agregar Contacto</h2>
+            <form class="crud-form">
+                <div class="element">
+                    <input type="text" name="nombre" placeholder="Nombre" required>    
+                </div>
+                <div class="element">
+                    <input type="text" name="telefono" placeholder="telefono" required>
+                </div>
+                <div class="element">
+                    <input type="submit" value="Enviar">
+                    <input type="reset" value="Cancelar" class="cancel">
+                </div>
+
+                <!-- si el id viene vacio significa que el $form va a procesar una nueva información (CREATE - POST) caso contrario si viene
+                     con inf va a realizar una edición -->
+                <input type="hidden" name="id">
+            </form>
+        </article>
+        <article class="container__table">
+            <h2>Contactos</h2>
+            <div class="container__table-total">
+                <table class="crud-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Telefono</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </article>
+    </section>
+
+    <template id="crud-template">
+        <tr>
+            <td class="name"></td>
+            <td class="phone"></td>
+            <td class="template__buttons">
+                <a href="#section1"><button  class="edit">Editar</button></a>
+                <button class="delete">Eliminar</button>
+            </td>
+        </tr>
+    </template>
+
+    <script>
+        const d = document,
+         $table = d.querySelector(".crud-table"),
+         $form = d.querySelector(".crud-form"),
+         $title = d.querySelector(".crud-title"),
+         $template = d.getElementById("crud-template").content,
+         $fragment = d.createDocumentFragment();
+
+        
+/**
+ * ********* * CRUD AJAX: Objeto XMLHttpRequest EN UNA FUNCIÓN EXPRESADA Y USANDO TEMPLATE HTML *
+ */
+
+const crudAjax = (options) => {
+    let {url, method, succes, error, data} = options;
+    const xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("readystatechange", e =>{
+        if(xhr.readyState !== 4) return;
+
+        if(xhr.status >= 200 &&  xhr.status < 300){
+            let json = JSON.parse(xhr.responseText);
+            succes(json);
+        } else {
+            let message = xhr.statusText || "Ocurrio un érror.";
+            error(`Error ${xhr.status}: ${message}`);
+        }
+    });
+
+    xhr.open(method || "GET", url);
+    xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+    xhr.send(JSON.stringify(data));
+}
+
+// funcion expresada
+const getAll = () => {
+    crudAjax({
+        //method: "GET",
+        url: "http://localhost:3000/agendaEmpresa",
+        succes: (res) => { 
+            console.log(res);
+            
+            res.forEach(el=>{
+                $template.querySelector(".name").textContent = el.nombre;
+                $template.querySelector(".phone").textContent = el.telefono;
+                $template.querySelector(".edit").dataset.id = el.id;
+                $template.querySelector(".edit").dataset.name = el.nombre;
+                $template.querySelector(".edit").dataset.phone = el.telefono;
+                $template.querySelector(".delete").dataset.id = el.id;
+
+                let $clone = d.importNode($template, true);
+                $fragment.appendChild($clone);
+            });
+
+            $table.querySelector("tbody").appendChild($fragment);
+        
+        },
+        error: (err) => { 
+            console.error(err);
+            $table.insertAdjacentHTML("afterend", `<p><b>${err}</b></p>`);
+        }
+        //data: null
+    })
+}
+
+d.addEventListener("DOMContentLoaded", getAll);
+
+// AJAX CREATE - POST * UPDATE - PUT
+
+d.addEventListener("submit", e =>{
+    if(e.target === $form){
+        e.preventDefault();
+
+        if(!e.target.id.value){
+            //Create - POST
+            crudAjax({
+                url: "http://localhost:3000/agendaEmpresa",
+                method: "POST",
+                succes: (res) => location.reload(),
+                error: (err) => $form.insertAdjacentHTML("afterend", `<p><b>${err}</b></p>`),
+                data: {
+                    //e.target es el formulario y el e.nombre sale del atributo name del formulario
+                    nombre: e.target.nombre.value,
+                    telefono: e.target.telefono.value
+                }
+            });
+        } else {
+            //Update - PUT / Interpolamos la url y le adicionamos la ruta como lo hicimos con la app de insomnia
+            crudAjax({
+                url: `http://localhost:3000/agendaEmpresa/${e.target.id.value}`,
+                method: "PUT",
+                succes: (res) => location.reload(),
+                error: (err) => $form.insertAdjacentHTML("afterend", `<p><b>${err}</b></p>`),
+                data: {
+                    //e.target es el formulario y el e.nombre sale del atributo name del formulario
+                    nombre: e.target.nombre.value,
+                    telefono: e.target.telefono.value
+                }
+            });
+        }
+    }
+});
+
+
+// AJAX EVENT EDIT
+d.addEventListener("click", e =>{
+    if(e.target.matches(".edit")){
+        //alert("Presionaste el botón Editar");
+        $title.textContent = "Editar Contacto";
+        $form.nombre.value = e.target.dataset.name;
+        $form.telefono.value = e.target.dataset.phone;
+        $form.id.value = e.target.dataset.id;
+    }
+
+    // Limpiamos el form si el usuario desea cancelar la edición.
+    if(e.target.matches(".cancel")){
+        $title.textContent = "Agregar Contacto";
+        $form.nombre.value = null;
+        $form.telefono.value = null;
+        $form.id.value = null;
+    }
+
+    // AJAX DELETE
+    if(e.target.matches(".delete")){
+        let isDelete = confirm(`Estas seguro de eliminar el id ${e.target.dataset.id}? `);
+
+        if (isDelete){
+            //DELETE - DELETE / Interpolamos la url y le adicionamos la ruta como lo hicimos con la app de insomnia
+            crudAjax({
+                url: `http://localhost:3000/agendaEmpresa/${e.target.dataset.id}`,
+                method: "DELETE",
+                succes: (res) => location.reload(),
+                error: () => alert(err)
+            });
+        }
+    }
+});
+
+    </script>
+</body>
+</html>

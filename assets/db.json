@@ -1,0 +1,66 @@
+{
+  "agendaEmpresa": [
+    {
+      "nombre": "Edit Martinez",
+      "telefono": "3215885850",
+      "id": 1
+    },
+    {
+      "nombre": "Fabian Barrera",
+      "telefono": "5585559",
+      "id": 2
+    },
+    {
+      "nombre": "Laila Barrera",
+      "telefono": "3105585698",
+      "id": 3
+    },
+    {
+      "nombre": "Sean Smith",
+      "telefono": "6097543698",
+      "id": 4
+    },
+    {
+      "nombre": "Ikki Smith",
+      "telefono": "6095678954",
+      "id": 5
+    },
+    {
+      "nombre": "Juan Tapia",
+      "telefono": "5678210",
+      "id": 6
+    },
+    {
+      "nombre": "Jose Narvaez",
+      "telefono": "2698745",
+      "id": 7
+    },
+    {
+      "nombre": "Julieta Estrada",
+      "telefono": "9878455",
+      "id": 8
+    }
+  ],
+  "proveedores": [
+    {
+      "id": 1,
+      "nombre": "Esteban Pineda",
+      "telefono": "3153405698"
+    },
+    {
+      "id": 2,
+      "nombre": "Sebastian Martinez",
+      "telefono": "3208974521"
+    },
+    {
+      "id": 3,
+      "nombre": "Daniel Pedraza",
+      "telefono": "6104589785"
+    },
+    {
+      "id": 4,
+      "nombre": "Miguel Ballesteros",
+      "telefono": "6095874562"
+    }
+  ]
+}
