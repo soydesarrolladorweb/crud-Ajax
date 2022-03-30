@@ -26,8 +26,8 @@
            
         }
         h1{
-            font-size: 30px;
-            margin: 10px 0 30px;
+            font-size: 28px;
+            margin: 48px 0 30px;
             padding: 0;
             color: #46bb83;
             /* color: #fff; */
@@ -94,7 +94,7 @@
             width: 80%;
             height: 100%;
             margin: auto;
-            border-spacing: 2px;
+            /* border-spacing: 2px; */
         }
         .crud-table th{
             /* color: #46bb83; */
@@ -170,7 +170,7 @@
              }
              .crud-table th{
                  font-size: 1.5rem;
-                 padding: 20px;
+                 padding: 10px;
              }
              .name{
                  width: 100%;
@@ -184,7 +184,7 @@
  
              table, th, td, template{
                  width: 100%;
-                 padding: 20px;
+                 padding: 10px;
              }
  
              .template__buttons a{
@@ -220,7 +220,7 @@
 </head>
 <body>
     <h1>CRUD API REST AJAX</h1>
-    <section id="section1" class="crud">
+    <section id="section1" class="crud grid">
         <article class="container">
             <h2 class="crud-title">Agregar Contacto</h2>
             <form class="crud-form">
@@ -228,7 +228,7 @@
                     <input type="text" name="nombre" placeholder="Nombre" required>    
                 </div>
                 <div class="element">
-                    <input type="text" name="telefono" placeholder="telefono" required>
+                    <input type="text" name="telefono" placeholder="Teléfono" required>
                 </div>
                 <div class="element">
                     <input type="submit" value="Enviar">
@@ -247,7 +247,7 @@
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>Telefono</th>
+                            <th>Teléfono</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
