@@ -22,7 +22,7 @@
         body{
            margin: 0;
            padding: 0;
-           background: linear-gradient(#7209b7, #3f37c0);
+           background: #7209b7;
            
         }
         h1{
@@ -30,12 +30,12 @@
             margin: 10px 0 30px;
             padding: 0;
             color: #46bb83;
+            /* color: #fff; */
             text-align: center;
         }
  
         .container{
-            margin: 30px auto;
-            /* height: 320px; */
+            margin: 10px auto;
             height: 30%;
             width: 80%;
             padding: 30px;
@@ -47,7 +47,8 @@
             margin: 0 0 30px;
             padding: 0;
             font-size: 26px;
-            color: #4ccf90;
+            /* color: #4ccf90; */
+            color: #fff;
             text-align: center;
         }
  
@@ -62,7 +63,7 @@
         }
  
         .container .element input[type="submit"]{
-            background-color:rgba(39, 58, 121, 0.774);
+            background-color:#62b3a1;
             border: none;
             letter-spacing: 4px;
             border-radius: 8px;
@@ -71,7 +72,7 @@
         }
  
         .container .element input[type="reset"]{
-            background-color:rgba(182, 41, 41, 0.699);
+            background-color: #f72585;
             border: none;
             letter-spacing: 4px;
             border-radius: 8px;
@@ -96,7 +97,8 @@
             border-spacing: 2px;
         }
         .crud-table th{
-            color: #46bb83;
+            /* color: #46bb83; */
+            color: #fff;
             margin: auto;
             padding: 0;
             width: 100%;
@@ -122,7 +124,7 @@
         }
  
         .delete{
-            background-color: rgba(182, 41, 41, 0.699);
+            background-color:#f72585;
             color: beige;
             font-weight: 700;
             border-radius: 8px;
@@ -130,16 +132,20 @@
             height: 2rem;
             margin: 0.5rem;
             cursor: pointer;
+            border-style: none;
         }
+
+        
         .edit{
-            background-color: rgba(39, 58, 121, 0.774);
+            background-color: #62b3a1;
             color: beige;
             font-weight: 700;
             border-radius: 8px;
             width: 3.8rem;
             height: 2rem;
-            padding-bottom: 5px;
+            padding-bottom: 1px;
             cursor: pointer;
+            border-style: none;
         }
  
         .template__buttons{
@@ -156,14 +162,9 @@
  
              .container{
                  width: 50%;
+                 height: 90%;
              }
- 
-             .container__table{
-                 display: grid;
-                 justify-content: center;
-                 width: 100%;
-                 margin: 0 auto;
-             }
+             
              .container h2, .container__table h2{
                  font-size: 32px;
              }
@@ -197,15 +198,22 @@
         }
  
         @media screen and (min-width: 998px) {
-         .container .element input{
-             font-size: 18px;
-         }
- 
-         .name, .phone{
-             width: 100%;
-             font-size: 16px;
-        }
- 
+            h1{
+                font-size: 40px;
+            }
+            .container .element input{
+                font-size: 18px;
+            }
+    
+            .name, .phone{
+                width: 100%;
+                font-size: 16px;
+            }
+            
+            .grid{
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
      }
  
     </style>
